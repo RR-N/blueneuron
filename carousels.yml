@@ -1,0 +1,17 @@
+carousels:
+  - images: 
+    - image: gallery/slides/poster1.png
+    - image: gallery/slides/poster1.png
+  - images: 
+    - image: gallery/slides/ws1.jpg
+    - image: gallery/slides/ws2.jpg
+    - image: gallery/slides/ws3.png
+    - image: gallery/slides/ws4.png
+    - image: gallery/slides/ws5.png
+    - image: gallery/slides/ws6.png
+    - image: gallery/slides/ws7.png
+    - image: gallery/slides/ws8.png
+    - image: gallery/slides/ws9.png
+    - image: gallery/slides/ws91.png
+    - image: gallery/slides/ws92.png
+    - image: gallery/slides/ws93.png
