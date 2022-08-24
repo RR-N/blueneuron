@@ -1,7 +1,7 @@
 title: Blue Neuron
 description: '"Everything was beautiful, and nothing hurt."'
 permalink: '/stories/:title'
-url: 'https://rr-n.github.io'
+url: 'https://blueneuron.net'
 relative_permalinks: false
 exclude:
   - script
