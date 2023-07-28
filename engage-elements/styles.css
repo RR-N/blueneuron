@@ -1,0 +1,44 @@
+#zoom-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#zoom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    transition: filter 0.25s;
+}
+
+.darken #zoom {
+    filter: brightness(50%);
+}
+
+.darken .overlay:not(.pulse) {
+    filter: brightness(50%);
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(128, 0, 128, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
+    }
+}
