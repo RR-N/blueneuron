@@ -121,4 +121,4 @@ function handleClick(id) {
     clickCount++;
 }
 
-positionImages();
+window.addEventListener('load', positionImages);
