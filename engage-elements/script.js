@@ -8,10 +8,6 @@ window.addEventListener('resize', function() {
     }
 });
 
-window.addEventListener('load', function() {
-    positionImages();
-});
-
 function positionImages() {
     const zoom = document.getElementById('zoom');
     const zoomWidth = zoom.offsetWidth;
@@ -107,7 +103,7 @@ function handleClick(id) {
     preText.style.left = '25px';
     preText.style.top = '50%';
     preText.style.transform = 'translateY(-50%)';
-    preText.style.maxWidth = '435px';
+    preText.style.maxWidth = '484px';
     document.getElementById('zoom-container').appendChild(preText);
 
     const preRaven = new Image();

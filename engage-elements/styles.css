@@ -1,44 +1,60 @@
-#zoom-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
 
-#zoom {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
-}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+        }
 
-.overlay {
-    position: absolute;
-    transition: filter 0.25s;
-}
+        #zoom-container {
+            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+        }
 
-.darken #zoom {
-    filter: brightness(50%);
-}
+        #zoom {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
 
-.darken .overlay:not(.pulse) {
-    filter: brightness(50%);
-}
+        .overlay {
+            position: absolute;
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.25s ease;
+            z-index: 1;
+        }
 
-.pulse {
-    animation: pulse 2s infinite;
-}
+        .overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            z-index: 3;
+        }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(128, 0, 128, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
-    }
-}
+        #zoom-container.darken .overlay:not(:hover) {
+            opacity: 0.5;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(128, 0, 128, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+
+    
