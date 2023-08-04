@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary of Terms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .glossary-term {
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+        .definition {
+            display: none;
+            margin-left: 20px;
+        }
+        .acronym {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="glossary">
+        
+        <div class="glossary-term" onclick="toggleDefinition('applied-science')">Applied science</div>
+<div id="applied-science" class="definition">In the context of this module, it is used to represent a branch of basic science research aimed to convert existing scientific knowledge to practical application</div>
+<div class="glossary-term" onclick="toggleDefinition('echo')">ECHO</div>
+<div id="echo" class="definition">Acronym for <span class="acronym">Economic, clinical, and humanistic outcomes</span>; a way to denote the different types of study outcomes in medical research</div>
+<div class="glossary-term" onclick="toggleDefinition('eclipse')">ECLIPSE</div>
+<div id="eclipse" class="definition">Acronym for <span class="acronym">Expectation, Client group, Location, Impact, Professionals, Service</span>; framework for creating research questions, commonly within policy/service evaluation</div>
+<div class="glossary-term" onclick="toggleDefinition('exposure')">Exposure</div>
+<div id="exposure" class="definition">Any factor that may be associated with an outcome of interest</div>
+<div class="glossary-term" onclick="toggleDefinition('external-validity')">External validity</div>
+<div id="external-validity" class="definition">How applicable the results of a study are to the real world</div>
+<div class="glossary-term" onclick="toggleDefinition('finer')">FINER</div>
+<div id="finer" class="definition">Acronym for <span class="acronym">Feasible, Interesting, Novel, Ethical, and Relevant</span>; criteria for evaluating research questions</div>
+        
+    </div>
+
+    <script>
+        const terms = {
+            "Applied science": "In the context of this module, it is used to represent a branch of basic science research aimed to convert existing scientific knowledge to practical application",
+            "ECHO": "Acronym for <span class='acronym'>Economic, clinical, and humanistic outcomes</span>; a way to denote the different types of study outcomes in medical research",
+            "ECLIPSE": "Acronym for <span class='acronym'>Expectation, Client group, Location, Impact, Professionals, Service</span>; framework for creating research questions, commonly within policy/service evaluation",
+            "Exposure": "Any factor that may be associated with an outcome of interest",
+            "External validity": "How applicable the results of a study are to the real world",
+            "FINER": "Acronym for <span class='acronym'>Feasible, Interesting, Novel, Ethical, and Relevant</span>; criteria for evaluating research questions",
+            "How": "The specific methodology or scientific strategy within a study",
+            "Intervention": "Any action which is taken upon a subject to generate an outcome of interest",
+            "Internal validity": "The degree of confidence that the relationship you are testing is not influenced by other variables",
+            "IRB": "Acronym for <span class='acronym'>Institutional review board</span>; a group formally designated to review and monitor biomedical research involving human subjects",
+            "Morbidity": "Illness or disease, often expressed as a proportion, rate, or prevalence",
+            "PICO/TS": "Acronym for <span class='acronym'>Patient/population/problem, Intervention, Comparison, Outcome, Timing/type of question, Setting/study design</span>; framework for creating research questions, commonly within quantitative patient-oriented research",
+            "Population": "The source where groups of subjects are identified",
+            "SPICE": "Acronym for <span class='acronym'>Setting, Perspective, Intervention/interest/exposure, Comparison, Evaluation</span>; framework for creating research questions, commonly within project/service evaluation",
+            "SPIDER": "Acronym for <span class='acronym'>Sample, Phenomenon of interest, Design, Evaluation, Research type</span>; framework for creating research questions, commonly within qualitative and mixed-methods research",
+            "Subject": "Any entity on which research evaluation is being measured upon",
+            "T0 to T4": "A classification system for research on the translational science spectrum, including T0 (basic research), T1 (translation to humans), T2 (translation to patients), T3 (translation to practice), and T4 (translation to communities)",
+            "Theoretical science": "In the context of this module, it is used to represent a branch of basic science research aimed to gather knowledge about a phenomenon",
+            "Who": "The subject of interest within a study; examples include patients, animals, or cells, a set of compounds, or a dataset or algorithm",
+            "What": "The action of interest within a study; examples include an intervention, an exposure of interest, or simply a phenomenon or mechanism",
+            "Why": "The outcome of interest within a study; examples include prevention of stroke or the development of dementia, the accuracy of a diagnostic test, or the identification of a specific genetic mutation"
+        };
+
+        
+        function toggleDefinition(id) {
+            const defDiv = document.getElementById(id);
+            defDiv.style.display = defDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+
+        const glossaryDiv = document.getElementById('glossary');
+
+        for (const [term, definition] of Object.entries(terms)) {
+            const termDiv = document.createElement('div');
+            termDiv.innerHTML = `<div class="glossary-term">${term}</div><div class="definition">${definition}</div>`;
+            glossaryDiv.appendChild(termDiv);
+
+            termDiv.querySelector('.glossary-term').addEventListener('click', () => {
+                const defDiv = termDiv.querySelector('.definition');
+                defDiv.style.display = defDiv.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

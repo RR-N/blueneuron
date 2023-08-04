@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Frameworks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .level1, .level2, .pico {
+            display: none;
+        }
+        .level1.active, .level2.active, .pico.active {
+            display: block;
+        }
+        .example {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Frameworks and Examples for Composing Research Questions</h1>
+    <div class="level1 active">
+        <h2>Choose an Area of Science:</h2>
+        <button onclick="showLevel2('basic')">Basic Science</button>
+        <button onclick="showLevel2('clinical')">Clinical Science</button>
+        <button onclick="showLevel2('public')">Public Health</button>
+    </div>
+    <div id="basic" class="level2">
+        <a class="example" onclick="showPICO('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7959502/', 'Identify strain-specific microbiota profiles...', 'B6.ChrPWD consomic mice', 'Strain-specific microbiota profiles...', 'N/A', 'Susceptibility to experimental autoimmune encephalomyelitis')">Example 1</a>
+        <a class="example" onclick="showPICO('https://pubmed.ncbi.nlm.nih.gov/30157420/', 'Identify whether synaptic inhibition of TrkA+ cholinergic neurons...', 'Cholinergic neurons', 'Synaptic inhibition of TrkA+ cholinergic neurons...', 'N/A', 'short-sleep phenotype')">Example 2</a>
+    </div>
+    <div id="clinical" class="level2">
+        <a class="example" onclick="showPICO('https://pubmed.ncbi.nlm.nih.gov/33653121/', 'Evaluate the safety and efficacy of intravenous ketamine...', 'Adolescents with treatment-resistant major depressive disorder', 'Intravenous ketamine', 'Midazolam', 'Safety and efficacy')">Example 1</a>
+        <a class="example" onclick="showPICO('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7034876/', 'Investigate the negative effects of psilocybin consumption...', 'Psilocybin users', 'Psilocybin consumption', 'N/A', 'Perception of negative effects')">Example 2</a>
+    </div>
+    <div id="public" class="level2">
+        <a class="example" onclick="showPICO('https://pubmed.ncbi.nlm.nih.gov/22349682/', 'Identify whether consumption of antioxidant-rich foods...', 'Elderly persons at risk of coronary heart disease', 'Consumption of antioxidant-rich foods from the Mediterranean Diet', 'N/A', 'Cognitive performance')">Example 1</a>
+        <a class="example" onclick="showPICO('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9881419/', 'Ascertain how physical activity impacts health-related quality...', 'Older adults with/out multiple sclerosis', 'Physical activity', 'N/A', 'Health-related quality of life')">Example 2</a>
+    </div>
+    <div class="pico" id="pico">
+        <!-- PICO/TS Details -->
+    </div>
+    <p>This mini-unit has provided a birds-eye view of some different formalized frameworks on which a researcher can design a research question.</p>
+    <script>
+        function showLevel2(area) {
+            document.querySelector('.level1').classList.remove('active');
+            document.querySelector(`#${area}`).classList.add('active');
+        }
+
+        function showPICO(url, question, P, I, C, O) {
+            document.querySelectorAll('.level2').forEach(el => el.classList.remove('active'));
+            const picoDiv = document.querySelector('#pico');
+            picoDiv.classList.add('active');
+            picoDiv.innerHTML = `<h2>Research Question: <a href="${url}" target="_blank">${question}</a></h2>
+                                 <p><strong>P:</strong> ${P}</p>
+                                 <p><strong>I:</strong> ${I}</p>
+                                 <p><strong>C:</strong> ${C}</p>
+                                 <p><strong>O:</strong> ${O}</p>`;
+        }
+    </script>
+</body>
+</html>
