@@ -9,6 +9,7 @@
     overflow: hidden;
     transition: max-height 0.8s;
     max-height: 23px; /* Adjust based on title size */
+    background-color: white;
 }
 
 .info-box.expanded {
@@ -64,6 +65,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: system-ui;
     cursor: pointer;
+    background-color: white;
 }
 
 .big-title {
