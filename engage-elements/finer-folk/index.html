@@ -1,18 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <div id="finer-container">
-        <!-- Include talking head images, each representing a different researcher -->
-        <img class="talking-head" id="james" src="images/james.png" alt="James">
-        <img class="talking-head" id="ida" src="images/ida.png" alt="Ida">
-        <img class="talking-head" id="amari" src="images/amari.png" alt="Amari">
-        <img class="talking-head" id="emma" src="images/emma.png" alt="Emma">
-        <img class="talking-head" id="juanita" src="images/juanita.png" alt="Juanita">
-    </div>
-    <div id="story-container"></div>
-    <script src="script.js"></script>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Researcher Experiences with FINER Criteria</title>
+        <style>
+            .researcher {
+                cursor: pointer;
+                padding: 10px;
+                border: 1px solid #000;
+                margin: 5px;
+                display: inline-block;
+            }
+
+            #story-box {
+                border: 1px solid #000;
+                padding: 10px;
+                margin: 10px;
+                min-height: 100px;
+                width: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width: 845px;font-size: 15px;">
+            <div id="James" class="researcher" onclick="showStory(this.id)">James, group leader.</div>
+            <div id="Ida" class="researcher" onclick="showStory(this.id)">Ida, mid-career researcher.</div>
+            <div id="Amari" class="researcher" onclick="showStory(this.id)">Amari, trainee.</div>
+            <div id="Emma" class="researcher" onclick="showStory(this.id)">Emma, student.</div>
+            <div id="Juanita" class="researcher" onclick="showStory(this.id)">Juanita, prospective grad student.</div>
+        </div>
+        <div id="story-box">A leader of a collaborative group of researchers narrows in on a study of interest that they wish to execute. The group has multiple conversations about available resources needed to successfully execute the project (funding, supplies, equipment, personnel, etc.). Increasingly, they realize that they lack expertise on the team necessary for one aspect of the project. They decide to adjust their initial research question focus, which allows the project to successfully proceed. They plan the next phase of the study securing the needed expertise to move forward on the next phase.</div>
+        <script>
+            function showStory(researcher) {
+                var stories = {
+                    "James": "A leader of a collaborative group of researchers narrows in on a study of interest that they wish to execute. The group has multiple conversations about available resources needed to successfully execute the project (funding, supplies, equipment, personnel, etc.). Increasingly, they realize that they lack expertise on the team necessary for one aspect of the project. They decide to adjust their initial research question focus, which allows the project to successfully proceed. They plan the next phase of the study securing the needed expertise to move forward on the next phase.",
+                    "Ida": "A mid-career researcher feels somewhat lost in the direction of their research. They find themselves at the natural end of one area of inquiry, but also nervous to change the focus of their work. Despite this anxiety, they identify an idea in a new area where they feel excited. They decide to take the plunge, learning new techniques, investing deeply to read new literature, and networking with existing researchers in the area. This preparation leads them to reconsider some of their initial assumptions in this area of inquiry, but ultimately allowing them to narrow in on a new and refined research question. Although the process of re-framing their research program is difficult, they are professionally reinvigorated by the change and see the effort they are putting in on building a solid foundation is paying off.",
+                    "Amari": "A trainee digs deep into the literature, and as they learn more about their topic of interest, they identify one area where there doesn’t seem to be a lot of existing research. They talk to their supervising professor about this, who tells them they have never considered that specific problem, yet it would very useful if they could find the solution. With mutual excitement, they design their research question around this gap in the literature, and eventual publication of the results is highly regarded by many across their scientific discipline.",
+                    "Emma": "A student proposes a study to their supervisor that seeks to understand the experiences of a historically marginalized group. In conceptualizing the project, they want to make sure that no harm comes to subjects because of the work being conducted. Their professor recommends speaking with the local institutional review board (IRB) prior to formal submission to optimize their approach. The IRB makes recommendations on how to best protect the study subjects, including a reframing of the research question. With this guidance, the study progresses forward successfully, eventually securing funding for significant expansion of the work.",
+                    "Juanita": "A prospective graduate student is considering two different approaches to their research. Both seek to evaluate the impact of similar clinical interventions, but one approach has significantly more ‘buy-in’ by the patient population of interest, meaning that its implementation, if effective, would garner more acceptance. The student decides to involve relevant stakeholders in their research planning, leading to fruitful discussion and a research question of high interest to the community of interest. The work gains considerable praise from the patient population, and significant media coverage as a result."
+                };
+                document.getElementById('story-box').innerText = stories[researcher];
+            }
+        </script>
+    </body>
 </html>
