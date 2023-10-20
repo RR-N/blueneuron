@@ -1,0 +1,193 @@
+<style>
+    table {
+        border-collapse: collapse;
+        margin-bottom: 20px;  /* Adds space between each table */
+    }
+
+    th, td {
+        border: 1px solid black;  /* Makes table lines visible */
+        padding: 8px;
+        text-align: left;
+    }
+
+    #entries {
+        margin-top: 20px;  /* Adds space between UI and tables */
+    }
+
+    #checkboxes, #corefilters{
+        padding-bottom: 15px;
+    }
+
+    select[multiple] {
+        height: 150px;
+        overflow: auto;
+    }
+
+    select[multiple], #searchButton {
+        width: 685px;
+        display: block;
+    }
+</style>
+
+<script>
+    // Global variables
+    let jsonData = {};
+    let allKeys = new Set();
+    const checkboxes = ["IsGlobal", "IsLootable", "CanFight", "HasGameplayValue", "CanClimbOn", "IsPortal", "CanJoinCombat"];
+
+
+    // Load JSON data based on selected type
+    function loadJSON(type) {
+        fetch(`./chunked_json/${type}.json`)
+        .then(response => response.json())
+        .then(data => {
+            jsonData = data;
+
+            // Populate allKeys set
+            allKeys.clear();
+            for (const entry of Object.values(jsonData)) {
+                for (const key of Object.keys(entry)) {
+                    allKeys.add(key);
+                }
+            }
+
+            // Populate multiselect dropdown for keys
+            const keyDropdown = document.getElementById("keyDropdown");
+            keyDropdown.innerHTML = '';
+            for (const key of allKeys) {
+                const option = document.createElement("option");
+                option.value = key;
+                option.text = key;
+                keyDropdown.appendChild(option);
+            }
+
+        });
+
+        // Enable the rest of the UI
+        document.getElementById("searchBox").disabled = false;
+        document.getElementById("keyDropdown").disabled = false;
+        for (const checkbox of checkboxes) {
+            document.getElementById(checkbox).disabled = false;
+        }
+
+        // Enable the Search button
+        document.getElementById("searchButton").disabled = false;
+
+    }
+
+    // Filter data based on search text and checkboxes
+    function filterData() {
+        document.getElementById("loading").style.display = "block";
+        const searchText = document.getElementById("searchBox").value.toLowerCase();
+        let filteredData = {};
+        for (const [key, value] of Object.entries(jsonData)) {
+            let displayName = value.DisplayNameEnglish || value.DisplayName || "";
+            displayName = displayName.toLowerCase();
+            if (displayName.includes(searchText)) {
+                let satisfiesAllChecks = true;
+                for (const checkbox of checkboxes) {
+                    const checkboxElement = document.getElementById(checkbox);
+                    if (checkboxElement.checked && value[checkbox] !== 'True') {
+                        satisfiesAllChecks = false;
+                        break;
+                    }
+                }
+                if (satisfiesAllChecks) {
+                    filteredData[key] = value;
+                }
+            }
+        }
+
+        // Get selected keys from multiselect dropdown
+        const selectedKeys = Array.from(document.getElementById("keyDropdown").selectedOptions).map(option => option.value);
+
+        // Update the UI based on filteredData and selectedKeys
+        updateUI(selectedKeys);
+
+        // Update the UI based on filteredData and selectedKeys
+        function updateUI(selectedKeys) {
+            const entriesDiv = document.getElementById("entries");
+            entriesDiv.innerHTML = "";  // Clear existing entries
+
+            for (const [uuid, value] of Object.entries(filteredData)) {
+                // Create table and header
+                const table = document.createElement("table");
+                const header = document.createElement("thead");
+                const headerRow = document.createElement("tr");
+                const headerCell = document.createElement("th");
+                headerCell.colSpan = 2;
+                headerCell.textContent = `UUID ${uuid}`;
+                headerRow.appendChild(headerCell);
+                header.appendChild(headerRow);
+                table.appendChild(header);
+
+                // Create table body
+                const tbody = document.createElement("tbody");
+
+                // Add rows for selected keys
+                for (const key of selectedKeys) {
+                    if (value[key]) {
+                        const row = document.createElement("tr");
+                        const keyCell = document.createElement("td");
+                        keyCell.textContent = key;
+                        keyCell.style.fontWeight = "bold";
+                        const valueCell = document.createElement("td");
+                        valueCell.textContent = value[key];
+                        row.appendChild(keyCell);
+                        row.appendChild(valueCell);
+                        tbody.appendChild(row);
+                    }
+                }
+
+                // Append body to table and table to entriesDiv
+                table.appendChild(tbody);
+                entriesDiv.appendChild(table);
+                document.getElementById("loading").style.display = "none";
+            }
+        }
+    }
+
+
+    // Populate dropdown and checkboxes dynamically, then attach event listeners
+    window.onload = function() {
+        // Populate type dropdown
+        const types = ['character', 'lightProbe', 'terrain', 'TileConstruction', 'trigger', 'item', 'light', 'scenery', 'LevelTemplate', 'CombinedLight', 'decal', 'fogVolume', 'constellationHelper', 'constellation', 'Spline', 'prefab', 'projectile', 'surface'];
+        const typeDropdown = document.getElementById("typeDropdown");
+        for (const type of types) {
+            const option = document.createElement("option");
+            option.value = type;
+            option.text = type;
+            typeDropdown.appendChild(option);
+        }
+
+        // Enable the type dropdown
+        document.getElementById("typeDropdown").disabled = false;
+
+        // Populate checkboxes
+        const checkboxDiv = document.getElementById("checkboxes");
+        for (const checkbox of checkboxes) {
+            const label = document.createElement("label");
+            label.innerHTML = checkbox;
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.id = checkbox;
+            label.appendChild(input);
+            checkboxDiv.appendChild(label);
+        }
+
+        // Attach event listeners
+        document.getElementById("typeDropdown").addEventListener("change", function() {
+            const selectedType = this.value;
+            if (selectedType) {
+                loadJSON(selectedType);
+            }
+        });
+
+        // Enable type dropdown
+        document.getElementById("typeDropdown").disabled = false;
+
+        document.getElementById("searchButton").addEventListener("click", filterData);
+    };
+
+</script>
+
