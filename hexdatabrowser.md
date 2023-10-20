@@ -38,8 +38,12 @@ permalink: "/hexdatabrowser/"
 	    <!-- Search Button -->
 	    <button id="searchButton" disabled>Search</button>
 
+	    </br>
+
 	    <!-- Loading sign -->
 	    <div id="loading" style="display:none;">Loading...</div>
+
+	    </br>
 
 	    <!-- Area to display filtered entries -->
 	    <div id="entries">

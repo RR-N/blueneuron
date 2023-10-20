@@ -14,3 +14,9 @@ assets/vendor/bootstrap-sass/assets/javascripts/
 .env
 .jekyll-metadata
 tmp/
+assets/Merged_All_dict.json
+Merged_All_dict.json
+_includes/chunked_json/scenery.json
+_layouts/chunked_json/scenery.json
+assets/chunked_json/scenery.json
+chunked_json/scenery.json
