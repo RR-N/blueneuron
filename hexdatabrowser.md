@@ -6,6 +6,8 @@ permalink: "/hexdatabrowser/"
 
 <div class="container-lg p-responsive" style="display:grid;">
   <div class="test" style="align: center">
+  	</br>
+  	</br>
     <div class="float-left">
       <img class="d-block pr-4" style="width: 360px;" alt="FedRAMP Logo" src="{{"/assets/img/soc-brilliance.png" | relative_url}}">
     </div>
