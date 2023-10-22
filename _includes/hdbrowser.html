@@ -167,7 +167,7 @@
     // Populate dropdown and checkboxes dynamically, then attach event listeners
     window.onload = function() {
         // Populate type dropdown
-        const types = ['character', 'lightProbe', 'terrain', 'TileConstruction', 'trigger', 'item', 'light', 'scenery', 'LevelTemplate', 'CombinedLight', 'decal', 'fogVolume', 'constellationHelper', 'constellation', 'Spline', 'prefab', 'projectile', 'surface'];
+        const types = ['character', 'Weapons', 'Armor', 'Items', 'Passives', 'Spells', 'Statuses', 'Tags', 'Flags', 'lightProbe', 'terrain', 'TileConstruction', 'trigger', 'light', 'scenery', 'LevelTemplate', 'CombinedLight', 'decal', 'fogVolume', 'constellationHelper', 'constellation', 'Spline', 'prefab', 'projectile', 'surface'];
         const typeDropdown = document.getElementById("typeDropdown");
         for (const type of types) {
             const option = document.createElement("option");
